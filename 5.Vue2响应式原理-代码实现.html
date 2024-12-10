@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	
+	<script>
+
+
+		// 定义观察者方法,接受一个对象
+		const observe = (data) => {
+			// 遍历数据,调用defineReactive,将对象中的所有属性转换为响应式数据(增加getter,setter)
+			for(key in data) {
+				defineReactive(data, key, data[key])
+			}
+		}
+
+		// 将数据转化为响应式
+		const defineReactive = (target, key, value) => {
+			Object.defineProperty(target, key, {
+				get() {
+					return value
+				},
+
+				set(newValue) {
+					if(value !== newValue) {
+						value = newValue 
+					}
+				}
+			})
+		}
+
+		// 模拟创建Vue实例并定义数据
+		const vm = {
+			name: "zhangxinxin",
+			age: 18
+		}
+
+		const res = observe(vm)
+		console.log(vm)
+
+	</script>
+	
+</body>
+</html>

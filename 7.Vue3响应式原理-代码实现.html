@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	
+	<script>
+
+		// 创建数据对象
+		const data = { name: "zhangxinxin", age: 18 }
+
+		// 实现数据响应式
+		const handler = {
+			get(target, key, recevier) {
+				return Reflect.get(target, key)
+			},
+
+			set(target, key, value, recevire) {
+				Reflect.set(target, key, value, recevire)
+			}
+		}
+
+
+		// 创建proxy实例,传递数据对象与handler对象
+		let proxy = new Proxy(data, handler)
+		console.log(proxy)
+	</script>
+
+</body>
+</html>
